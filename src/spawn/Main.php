@@ -38,10 +38,6 @@ class Main extends PluginBase implements Listener{
   //Команды
   public function onCommand(CommandSender $sender, Command $command, $label, array $args):bool{
     if($command->getName() == "setspawn") {
-      if(!$sender instanceof Player) {
-    		$sender->sendMessage("§cДоступно только в игре!");
-    		return true;
-      }
       $pos = $sender->getPlayer();
       $this->n = ((float) $pos->getX());
       $this->m = ((float) $pos->getY());
@@ -52,10 +48,6 @@ class Main extends PluginBase implements Listener{
     }
     //Команда spawn
     if($command->getName() == "spawn") {
-      if(!$sender instanceof Player) {
-    		$sender->sendMessage("§cДоступно только в игре!");
-    		return true;
-      }
       $x = $this->getSpawnCord("x");
       $y = $this->getSpawnCord("y");
       $z = $this->getSpawnCord("z");
