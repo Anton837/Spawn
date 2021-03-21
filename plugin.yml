@@ -1,0 +1,23 @@
+name: Spawn
+version: 1.6.1
+main: spawn\Main
+api: 3.17.5
+author: LorenMCBE
+commands:
+  setspawn:
+    description: Устанавливает точку спавна
+    usage: /setspawn
+    permission: setspawn.use
+    aliases: [setsp]
+  spawn:
+    description: Телепорт на спавн
+    usage: /spawn
+    permission: spawn.use
+    aliases: [sp]
+  
+permissions:
+  setspawn.use:
+    default: op
+  spawn.use:
+    default: true
+  
