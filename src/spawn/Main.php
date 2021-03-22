@@ -38,13 +38,28 @@ class Main extends PluginBase implements Listener{
   //Команды
   public function onCommand(CommandSender $sender, Command $command, $label, array $args):bool{
     if($command->getName() == "setspawn") {
-      $pos = $sender->getPlayer();
-      $this->n = ((float) $pos->getX());
-      $this->m = ((float) $pos->getY());
-      $this->p = ((float) $pos->getZ());
-      $this->setSpawnCord($this->n,$this->m,$this->p);
-      $sender->sendMessage("§2Точка спавна успешно создана.");
-      return true;
+      if(count($args) == 3){
+        if(!is_numeric($args[0]) or !is_numeric($args[1]) or !is_numeric($args[2])) {
+          return false;
+        } else {
+          $x = (float) $args[0];
+          $y = (float) $args[1];
+          $z = (float) $args[2];
+          $this->setSpawnCord($x,$y,$z);
+          $sender->sendMessage("§2Точка спавна успешно создана.");
+          return true;
+        }
+      } elseif(count($args) == 0) {
+        $pos = $sender->getPlayer();
+        $this->n = ((float) $pos->getX());
+        $this->m = ((float) $pos->getY());
+        $this->p = ((float) $pos->getZ());
+        $this->setSpawnCord($this->n,$this->m,$this->p);
+        $sender->sendMessage("§2Точка спавна успешно создана.");
+        return true;
+      } else {
+        return false;
+      }
     }
     //Команда spawn
     if($command->getName() == "spawn") {
@@ -52,7 +67,8 @@ class Main extends PluginBase implements Listener{
       $y = $this->getSpawnCord("y");
       $z = $this->getSpawnCord("z");
       if ($y <= 0) {
-        $sender->sendMessage("§cНа таких координатах нельзя устанавливать точку спавна!");
+        $sender->sendMessage("§cНа таких координатах нельзя устанавливать точку спавна! Выберите другую точку!");
+        return true;
       } else {
         $sender->teleport(new Vector3(
           (float) $x,
