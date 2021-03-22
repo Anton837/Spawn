@@ -6,7 +6,7 @@ author: LorenMCBE
 commands:
   setspawn:
     description: Устанавливает точку спавна
-    usage: /setspawn
+    usage: /setspawn или /setspawn <x> <y> <z>
     permission: setspawn.use
     aliases: [setsp]
   spawn:
